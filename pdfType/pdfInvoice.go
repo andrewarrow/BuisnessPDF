@@ -5,12 +5,13 @@ import (
 	din5008a "SimpleInvoice/norms/letter/din-5008-a"
 	"encoding/json"
 	"fmt"
-	errorsWithStack "github.com/go-errors/errors"
-	"github.com/jung-kurt/gofpdf"
-	"github.com/rs/zerolog"
 	"io"
 	"net/http"
 	"strconv"
+
+	errorsWithStack "github.com/go-errors/errors"
+	"github.com/jung-kurt/gofpdf"
+	"github.com/rs/zerolog"
 )
 
 type Invoice struct {
@@ -151,10 +152,10 @@ func (i *Invoice) GeneratePDF() (*gofpdf.Fpdf, error) {
 
 func (i *Invoice) doGeneratePdf() {
 	var infoData []din5008a.InfoData
-	infoData = append(infoData, din5008a.InfoData{Name: "Kundennummer:", Value: i.data.InvoiceMeta.CustomerNumber})
-	infoData = append(infoData, din5008a.InfoData{Name: "Rechnungsnummer:", Value: i.data.InvoiceMeta.InvoiceNumber})
-	infoData = append(infoData, din5008a.InfoData{Name: "Datum:", Value: i.data.InvoiceMeta.InvoiceDate})
-	infoData = append(infoData, din5008a.InfoData{Name: "Projektnummer:", Value: i.data.InvoiceMeta.ProjectNumber})
+	infoData = append(infoData, din5008a.InfoData{Name: "Client ID:", Value: i.data.InvoiceMeta.CustomerNumber})
+	infoData = append(infoData, din5008a.InfoData{Name: "Invoice ID:", Value: i.data.InvoiceMeta.InvoiceNumber})
+	infoData = append(infoData, din5008a.InfoData{Name: "Invoice Date:", Value: i.data.InvoiceMeta.InvoiceDate})
+	infoData = append(infoData, din5008a.InfoData{Name: "Project Number:", Value: i.data.InvoiceMeta.ProjectNumber})
 
 	din5008a.FullAddressesAndInfoPart(i.pdfGen, i.data.SenderAddress, i.data.ReceiverAddress, infoData)
 
@@ -211,10 +212,10 @@ func (i *Invoice) printInvoiceTable() {
 			[]string{
 				product.PositionNumber,
 				germanNumber(product.Quantity) + " " + product.Unit,
-				germanNumber(float64(product.SinglePrice)/float64(100)) + "€",
+				"$" + germanNumber(float64(product.SinglePrice)/float64(100)),
 				product.Description,
 				strconv.Itoa(product.TaxRate) + "%",
-				germanNumber(product.Quantity*(float64(product.SinglePrice)/float64(100))) + "€",
+				"$" + germanNumber(product.Quantity*(float64(product.SinglePrice)/float64(100))),
 			})
 	}
 
@@ -225,13 +226,13 @@ func (i *Invoice) printInvoiceTable() {
 	var headerCellAlign = []string{"LM", "LM", "LM", "LM", "RM", "RM"}
 	var bodyCellAlign = []string{"LM", "LM", "LM", "LM", "RM", "RM"}
 	var summaryCells = [][]string{
-		{"", "Zwischensumme", germanNumber(netSum) + "€"},
+		{"", "Total", "$" + germanNumber(netSum)},
 	}
 	//summaryCells append taxSums
 	for _, taxSum := range taxSums {
 		//append only if txSum is not 0
 		if taxSum.taxSum != 0 {
-			summaryCells = append(summaryCells, []string{"", taxSum.taxName, germanNumber(taxSum.taxSum) + "€"})
+			summaryCells = append(summaryCells, []string{"", taxSum.taxName, "$" + germanNumber(taxSum.taxSum)})
 		}
 	}
 
@@ -241,7 +242,7 @@ func (i *Invoice) printInvoiceTable() {
 	}
 
 	//add last row with total sum, calculated from netSum plus each taxSum
-	summaryCells = append(summaryCells, []string{"", "Gesamtbetrag", germanNumber(totalTax+netSum) + "€"})
+	summaryCells = append(summaryCells, []string{"", "Total", "$" + germanNumber(totalTax+netSum)})
 
 	var summaryColumnPercent = []float64{60, 25, 15}
 	var summaryColumnWidths = getColumnWithFromPercentage(i.pdfGen, summaryColumnPercent)

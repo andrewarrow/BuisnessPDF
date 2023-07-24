@@ -4,11 +4,12 @@ import (
 	"SimpleInvoice/generator"
 	din5008a "SimpleInvoice/norms/letter/din-5008-a"
 	"encoding/json"
+	"io"
+	"net/http"
+
 	errorsWithStack "github.com/go-errors/errors"
 	"github.com/jung-kurt/gofpdf"
 	"github.com/rs/zerolog"
-	"io"
-	"net/http"
 )
 
 type DeliveryNode struct {
@@ -144,9 +145,9 @@ func (d *DeliveryNode) GeneratePDF() (*gofpdf.Fpdf, error) {
 
 func (d *DeliveryNode) doGeneratePdf() {
 	var infoData []din5008a.InfoData
-	infoData = append(infoData, din5008a.InfoData{Name: "Kundennummer:", Value: d.data.DeliveryMeta.CustomerNumber})
-	infoData = append(infoData, din5008a.InfoData{Name: "Liefernummer:", Value: d.data.DeliveryMeta.DeliveryNodeNumber})
-	infoData = append(infoData, din5008a.InfoData{Name: "Datum:", Value: d.data.DeliveryMeta.DeliveryDate})
+	infoData = append(infoData, din5008a.InfoData{Name: "Client Number:", Value: d.data.DeliveryMeta.CustomerNumber})
+	infoData = append(infoData, din5008a.InfoData{Name: "Node:", Value: d.data.DeliveryMeta.DeliveryNodeNumber})
+	infoData = append(infoData, din5008a.InfoData{Name: "Invoice Date:", Value: d.data.DeliveryMeta.DeliveryDate})
 
 	din5008a.FullAddressesAndInfoPart(d.pdfGen, d.data.SenderAddress, d.data.ReceiverAddress, infoData)
 

@@ -3,6 +3,7 @@ package pdfType
 import (
 	"SimpleInvoice/generator"
 	"fmt"
+
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 )
@@ -41,7 +42,7 @@ func getAddressLine(address FullPersonInfo) string {
 }
 
 func germanNumber[T float64 | int](n T) string {
-	p := message.NewPrinter(language.German)
+	p := message.NewPrinter(language.English)
 
 	switch fmt.Sprintf("%T", *new(T)) {
 	case "float64":
