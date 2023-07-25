@@ -145,9 +145,10 @@ func SenderAdresse(pdfGen *generator.PDFGenerator, senderInfo FullAdresse) {
 		addressSenderRoadSmall += fmt.Sprintf(", %s", senderInfo.Address.StreetSupplement)
 	}
 
-	addressSenderRoadSmall += fmt.Sprintf(", %s %s",
-		senderInfo.Address.ZipCode,
+	addressSenderRoadSmall += fmt.Sprintf(", %s, %s %s",
 		senderInfo.Address.CityName,
+		senderInfo.Address.State,
+		senderInfo.Address.ZipCode,
 	)
 
 	if senderInfo.Address.CountryCode != "" {
@@ -160,7 +161,7 @@ func SenderAdresse(pdfGen *generator.PDFGenerator, senderInfo FullAdresse) {
 	pdfGen.SetFontSize(FontSizeSender8)
 	pdfGen.SetFontGapY(FontGabSender8)
 	pdfGen.PrintPdfText(addressSenderCompanySmall, "", "L")
-	pdfGen.PreviousLine(AddressSenderTextStartX)
+	//pdfGen.PreviousLine(AddressSenderTextStartX)
 	pdfGen.PrintPdfText(addressSenderRoadSmall, "", "L")
 
 	pdfGen.SetFontSize(FontSize10)

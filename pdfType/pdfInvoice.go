@@ -163,7 +163,7 @@ func (i *Invoice) doGeneratePdf() {
 	infoData = append(infoData, din5008a.InfoData{Name: "Client ID:", Value: i.data.InvoiceMeta.CustomerNumber})
 	infoData = append(infoData, din5008a.InfoData{Name: "Invoice ID:", Value: i.data.InvoiceMeta.InvoiceNumber})
 	infoData = append(infoData, din5008a.InfoData{Name: "Invoice Date:", Value: i.data.InvoiceMeta.InvoiceDate})
-	infoData = append(infoData, din5008a.InfoData{Name: "Project Number:", Value: i.data.InvoiceMeta.ProjectNumber})
+	//infoData = append(infoData, din5008a.InfoData{Name: "Project Number:", Value: i.data.InvoiceMeta.ProjectNumber})
 
 	din5008a.FullAddressesAndInfoPart(i.pdfGen, i.data.SenderAddress, i.data.ReceiverAddress, infoData)
 

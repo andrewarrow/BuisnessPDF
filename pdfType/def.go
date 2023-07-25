@@ -45,6 +45,7 @@ type FullPersonInfo struct {
 		StreetSupplement string `json:"streetSupplement"`
 		ZipCode          string `json:"zipCode"`
 		CityName         string `json:"cityName"`
+		State            string `json:"state"`
 		Country          string `json:"country"`
 		CountryCode      string `json:"countryCode"`
 	} `json:"address"`
