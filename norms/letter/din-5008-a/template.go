@@ -117,46 +117,49 @@ func ReceiverAdresse(pdfGen *generator.PDFGenerator, receiverAddress FullAdresse
 func SenderAdresse(pdfGen *generator.PDFGenerator, senderInfo FullAdresse) {
 
 	var addressSenderCompanySmall = ""
+	addressSenderCompanySmall += fmt.Sprintf("%s", senderInfo.CompanyName)
 
-	if senderInfo.CompanyName != "" {
-		addressSenderCompanySmall += fmt.Sprintf("%s", senderInfo.CompanyName)
+	/*
+		if senderInfo.CompanyName != "" {
+			addressSenderCompanySmall += fmt.Sprintf("%s", senderInfo.CompanyName)
 
-		if senderInfo.FullForename != "" || senderInfo.FullSurname != "" {
-			addressSenderCompanySmall += ", "
+			if senderInfo.FullForename != "" || senderInfo.FullSurname != "" {
+				addressSenderCompanySmall += ", "
+			}
 		}
-	}
 
-	if senderInfo.NameTitle != "" && (senderInfo.FullForename != "" || senderInfo.FullSurname != "") {
-		addressSenderCompanySmall += fmt.Sprintf("%s ", senderInfo.NameTitle)
-	}
+		if senderInfo.NameTitle != "" && (senderInfo.FullForename != "" || senderInfo.FullSurname != "") {
+			addressSenderCompanySmall += fmt.Sprintf("%s ", senderInfo.NameTitle)
+		}
 
-	if senderInfo.FullForename != "" {
-		addressSenderCompanySmall += fmt.Sprintf("%s ", senderInfo.FullForename)
-	}
-	if senderInfo.FullSurname != "" {
-		addressSenderCompanySmall += fmt.Sprintf("%s ", senderInfo.FullSurname)
-	}
+		if senderInfo.FullForename != "" {
+			addressSenderCompanySmall += fmt.Sprintf("%s ", senderInfo.FullForename)
+		}
+		if senderInfo.FullSurname != "" {
+			addressSenderCompanySmall += fmt.Sprintf("%s ", senderInfo.FullSurname)
+		}
 
-	var addressSenderRoadSmall = ""
+		var addressSenderRoadSmall = ""
 
-	addressSenderRoadSmall += fmt.Sprintf("%s %s",
-		senderInfo.Address.Road,
-		senderInfo.Address.HouseNumber,
-	)
+		addressSenderRoadSmall += fmt.Sprintf("%s %s",
+			senderInfo.Address.Road,
+			senderInfo.Address.HouseNumber,
+		)
 
-	if senderInfo.Address.StreetSupplement != "" {
-		addressSenderRoadSmall += fmt.Sprintf(", %s", senderInfo.Address.StreetSupplement)
-	}
+		if senderInfo.Address.StreetSupplement != "" {
+			addressSenderRoadSmall += fmt.Sprintf(", %s", senderInfo.Address.StreetSupplement)
+		}
 
-	addressSenderRoadSmall += fmt.Sprintf(", %s, %s %s",
-		senderInfo.Address.CityName,
-		senderInfo.Address.State,
-		senderInfo.Address.ZipCode,
-	)
+		addressSenderRoadSmall += fmt.Sprintf(", %s, %s %s",
+			senderInfo.Address.CityName,
+			senderInfo.Address.State,
+			senderInfo.Address.ZipCode,
+		)
 
-	if senderInfo.Address.CountryCode != "" {
-		addressSenderRoadSmall += fmt.Sprintf(", %s", senderInfo.Address.CountryCode)
-	}
+		if senderInfo.Address.CountryCode != "" {
+			addressSenderRoadSmall += fmt.Sprintf(", %s", senderInfo.Address.CountryCode)
+		}
+	*/
 
 	pdfGen.SetCursor(AddressSenderTextStartX, AddressSenderTextStopY)
 	pdfGen.PreviousLine(AddressSenderTextStartX)
@@ -165,7 +168,7 @@ func SenderAdresse(pdfGen *generator.PDFGenerator, senderInfo FullAdresse) {
 	pdfGen.SetFontGapY(FontGabSender8)
 	pdfGen.PrintPdfText(addressSenderCompanySmall, "", "L")
 	//pdfGen.PreviousLine(AddressSenderTextStartX)
-	pdfGen.PrintPdfText(addressSenderRoadSmall, "", "L")
+	//pdfGen.PrintPdfText(addressSenderRoadSmall, "", "L")
 
 	pdfGen.SetFontSize(FontSize10)
 	pdfGen.SetFontGapY(FontGab10)
