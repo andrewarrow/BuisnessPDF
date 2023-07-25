@@ -173,7 +173,7 @@ func (i *Invoice) doGeneratePdf() {
 		i.printClosingText()
 	})
 
-	din5008a.PageNumbering(i.pdfGen, i.footerStartY)
+	//din5008a.PageNumbering(i.pdfGen, i.footerStartY)
 }
 
 func (i *Invoice) printHeadlineAndOpeningText() {

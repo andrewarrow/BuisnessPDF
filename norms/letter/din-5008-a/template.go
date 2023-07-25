@@ -174,7 +174,7 @@ func Footer(content func(maxFooterHeight float64) (footerStartY float64), pdfGen
 
 	pdfGen.SetFontSize(FontSize10)
 	pdfGen.SetFontGapY(FontGabReceiver8)
-	pdfGen.DrawLine(BodyStartX, startAtY, BodyStopX, startAtY)
+	//pdfGen.DrawLine(BodyStartX, startAtY, BodyStopX, startAtY)
 	pdfGen.SetUnsafeCursor(BodyStartX, startAtY)
 
 	footerStartY = content(startAtY)
@@ -182,7 +182,7 @@ func Footer(content func(maxFooterHeight float64) (footerStartY float64), pdfGen
 		return -1, errorsWithStack.New(fmt.Sprintf("footerStartY %.4f out of range [%.4f, %.4f)", footerStartY, BodyStartY, Width))
 	}
 
-	pdfGen.DrawLine(BodyStartX, footerStartY-1, BodyStopX, footerStartY-1)
+	//pdfGen.DrawLine(BodyStartX, footerStartY-1, BodyStopX, footerStartY-1)
 
 	return footerStartY, nil
 }
