@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 
 	din5008a "github.com/andrewarrow/BuisnessPDF/norms/letter/din-5008-a"
 
@@ -73,6 +74,12 @@ func NewInvoice(logger *zerolog.Logger) *Invoice {
 		logger:        logger,
 		printErrStack: logger.GetLevel() <= zerolog.DebugLevel,
 	}
+}
+
+func (i *Invoice) SetDataFromJson(jsonString string) (err error) {
+	reader := strings.NewReader(jsonString)
+	json.NewDecoder(reader).Decode(&i.data)
+	return nil
 }
 
 func (i *Invoice) SetDataFromRequest(request *http.Request) (err error) {

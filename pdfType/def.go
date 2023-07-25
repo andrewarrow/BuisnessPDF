@@ -1,11 +1,13 @@
 package pdfType
 
 import (
-	"github.com/jung-kurt/gofpdf"
 	"net/http"
+
+	"github.com/jung-kurt/gofpdf"
 )
 
 type PdfType interface {
+	SetDataFromJson(jsonString string) (err error)
 	SetDataFromRequest(request *http.Request) (err error)
 	GeneratePDF() (*gofpdf.Fpdf, error)
 	LogError(err error)
