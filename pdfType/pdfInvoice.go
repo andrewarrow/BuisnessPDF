@@ -2,7 +2,6 @@ package pdfType
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"strconv"
@@ -304,22 +303,22 @@ func (i *Invoice) printFooterContent(maxFooterHeight float64) (footerStartY floa
 
 	currentStartX = din5008a.BodyStartX
 	i.pdfGen.SetCursor(currentStartX, footerStartY)
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Web, "", "L")
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Phone, "", "L")
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Email, "", "L")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Web, "", "L")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Phone, "", "L")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Email, "", "L")
 
 	currentStartX = ((din5008a.BodyStopX - din5008a.BodyStartX) / 2) + din5008a.BodyStartX
 	i.pdfGen.SetCursor(currentStartX, footerStartY)
-	i.pdfGen.PrintLnPdfText(i.data.SenderAddress.CompanyName, "", "C")
-	i.pdfGen.PrintLnPdfText(fmt.Sprintf("%s %s", i.data.SenderAddress.Address.Road, i.data.SenderAddress.Address.HouseNumber), "", "C")
-	i.pdfGen.PrintLnPdfText(i.data.SenderAddress.Address.ZipCode+" "+i.data.SenderAddress.Address.CityName, "", "C")
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.TaxNumber, "", "C")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderAddress.CompanyName, "", "C")
+	//i.pdfGen.PrintLnPdfText(fmt.Sprintf("%s %s", i.data.SenderAddress.Address.Road, i.data.SenderAddress.Address.HouseNumber), "", "C")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderAddress.Address.ZipCode+" "+i.data.SenderAddress.Address.CityName, "", "C")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.TaxNumber, "", "C")
 
 	currentStartX = din5008a.BodyStopX
 	i.pdfGen.SetCursor(currentStartX, footerStartY)
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.BankName, "", "R")
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Iban, "", "R")
-	i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Bic, "", "R")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.BankName, "", "R")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Iban, "", "R")
+	//i.pdfGen.PrintLnPdfText(i.data.SenderInfo.Bic, "", "R")
 
 	return footerStartY
 }
