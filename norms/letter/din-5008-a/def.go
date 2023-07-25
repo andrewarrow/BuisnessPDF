@@ -1,6 +1,6 @@
 package din5008a
 
-import dinA4 "SimpleInvoice/norms/paperSize/din-a4"
+import dinA4 "github.com/andrewarrow/BuisnessPDF/norms/paperSize/din-a4"
 
 // in mm
 // for DIN A4 paper

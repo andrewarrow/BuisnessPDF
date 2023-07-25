@@ -1,10 +1,11 @@
 package pdfType
 
 import (
-	"SimpleInvoice/generator"
 	"fmt"
-	errorsWithStack "github.com/go-errors/errors"
 	"net/url"
+
+	"github.com/andrewarrow/BuisnessPDF/generator"
+	errorsWithStack "github.com/go-errors/errors"
 )
 
 func mimeImg(pdfGen *generator.PDFGenerator, strUrl string, posX float64, posY float64, scale float64) {

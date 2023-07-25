@@ -1,4 +1,4 @@
-module SimpleInvoice
+module github.com/andrewarrow/BuisnessPDF
 
 go 1.19
 

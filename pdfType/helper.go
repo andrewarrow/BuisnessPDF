@@ -1,8 +1,9 @@
 package pdfType
 
 import (
-	"SimpleInvoice/generator"
 	"fmt"
+
+	"github.com/andrewarrow/BuisnessPDF/generator"
 
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"

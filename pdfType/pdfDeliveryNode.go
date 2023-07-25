@@ -1,11 +1,13 @@
 package pdfType
 
 import (
-	"SimpleInvoice/generator"
-	din5008a "SimpleInvoice/norms/letter/din-5008-a"
 	"encoding/json"
 	"io"
 	"net/http"
+
+	din5008a "github.com/andrewarrow/BuisnessPDF/norms/letter/din-5008-a"
+
+	"github.com/andrewarrow/BuisnessPDF/generator"
 
 	errorsWithStack "github.com/go-errors/errors"
 	"github.com/jung-kurt/gofpdf"

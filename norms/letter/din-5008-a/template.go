@@ -1,11 +1,12 @@
 package din5008a
 
 import (
-	"SimpleInvoice/generator"
 	"fmt"
+	"net/url"
+
+	"github.com/andrewarrow/BuisnessPDF/generator"
 	errorsWithStack "github.com/go-errors/errors"
 	"github.com/rs/zerolog"
-	"net/url"
 )
 
 type InfoData struct {
