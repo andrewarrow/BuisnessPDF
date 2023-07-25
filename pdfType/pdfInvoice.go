@@ -219,20 +219,20 @@ func (i *Invoice) printInvoiceTable() {
 		invoicedItems = append(invoicedItems,
 			[]string{
 				product.PositionNumber,
-				germanNumber(product.Quantity) + " " + product.Unit,
-				"$" + germanNumber(float64(product.SinglePrice)/float64(100)),
+				//germanNumber(product.Quantity) + " " + product.Unit,
+				//"$" + germanNumber(float64(product.SinglePrice)/float64(100)),
 				product.Description,
-				strconv.Itoa(product.TaxRate) + "%",
+				//strconv.Itoa(product.TaxRate) + "%",
 				"$" + germanNumber(product.Quantity*(float64(product.SinglePrice)/float64(100))),
 			})
 	}
 
-	var headerCells = []string{"Pos", "Anzahl", "Preis", "Beschreibung", "USt", "Netto"}
-	var columnPercent = []float64{6, 10, 10, 54, 8, 12}
+	var headerCells = []string{"#", "Description", "Amount"}
+	var columnPercent = []float64{6, 54, 12}
 	var columnWidth = getColumnWithFromPercentage(i.pdfGen, columnPercent)
 
-	var headerCellAlign = []string{"LM", "LM", "LM", "LM", "RM", "RM"}
-	var bodyCellAlign = []string{"LM", "LM", "LM", "LM", "RM", "RM"}
+	var headerCellAlign = []string{"LM", "LM", "RM"}
+	var bodyCellAlign = []string{"LM", "LM", "RM"}
 	var summaryCells = [][]string{
 		{"", "Total", "$" + germanNumber(netSum)},
 	}

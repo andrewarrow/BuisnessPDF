@@ -104,7 +104,10 @@ func ReceiverAdresse(pdfGen *generator.PDFGenerator, receiverAddress FullAdresse
 		pdfGen.PrintLnPdfText(receiverAddress.Address.StreetSupplement, "", "L")
 	}
 
-	pdfGen.PrintLnPdfText(fmt.Sprintf("%s %s", receiverAddress.Address.ZipCode, receiverAddress.Address.CityName), "", "L")
+	pdfGen.PrintLnPdfText(fmt.Sprintf("%s, %s %s",
+		receiverAddress.Address.CityName,
+		receiverAddress.Address.State,
+		receiverAddress.Address.ZipCode), "", "L")
 
 	if receiverAddress.Address.Country != "" {
 		pdfGen.PrintLnPdfText(fmt.Sprintf("%s", receiverAddress.Address.Country), "", "L")
