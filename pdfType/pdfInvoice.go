@@ -228,7 +228,7 @@ func (i *Invoice) printInvoiceTable() {
 	}
 
 	var headerCells = []string{"#", "Description", "Amount"}
-	var columnPercent = []float64{6, 54, 12}
+	var columnPercent = []float64{6, 80, 12}
 	var columnWidth = getColumnWithFromPercentage(i.pdfGen, columnPercent)
 
 	var headerCellAlign = []string{"LM", "LM", "RM"}
@@ -240,7 +240,7 @@ func (i *Invoice) printInvoiceTable() {
 	for _, taxSum := range taxSums {
 		//append only if txSum is not 0
 		if taxSum.taxSum != 0 {
-			summaryCells = append(summaryCells, []string{"", taxSum.taxName, "$" + germanNumber(taxSum.taxSum)})
+			//summaryCells = append(summaryCells, []string{"", taxSum.taxName, "$" + germanNumber(taxSum.taxSum)})
 		}
 	}
 
@@ -250,9 +250,9 @@ func (i *Invoice) printInvoiceTable() {
 	}
 
 	//add last row with total sum, calculated from netSum plus each taxSum
-	summaryCells = append(summaryCells, []string{"", "Total", "$" + germanNumber(totalTax+netSum)})
+	//summaryCells = append(summaryCells, []string{"", "Total", "$" + germanNumber(totalTax+netSum)})
 
-	var summaryColumnPercent = []float64{60, 25, 15}
+	var summaryColumnPercent = []float64{60, 25, 13}
 	var summaryColumnWidths = getColumnWithFromPercentage(i.pdfGen, summaryColumnPercent)
 	var summaryCellAlign = []string{"LM", "LM", "RM"}
 
